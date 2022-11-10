@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Components\Recursive;
+use Illuminate\Support\Str;
+
 
 class CategoryController extends Controller
 {
@@ -17,7 +19,8 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return view('category.index');
+        $categories = Category::paginate(5);
+        return view('category.index', compact('categories'));
     }
 
     public function create()
@@ -45,5 +48,14 @@ class CategoryController extends Controller
         return view('category.add', compact('htmlOptions'));
     }
 
+    public function store(Request $request)
+    {
+        $this->category->create([
+            'name' => $request->name,
+            'parent_id' => $request->parent_id,
+            'slug' => Str::slug($request->name)
+        ]);
+        return redirect()->route('categories.index');
+    }
 
 }

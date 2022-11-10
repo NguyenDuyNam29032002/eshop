@@ -18,7 +18,7 @@ class Recursive
     {
         foreach ($this->data as $value) {
             if ($value['parent_id'] == $id) {
-                $this->htmlSelect .= "<option>" . $text . $value['name'] . "</option>";
+                $this->htmlSelect .= "<option value='" . $value['id'] ."'>" . $text . $value['name'] . "</option>";
                 $this->categoryRecursive($value['id'], $text . '-');
             }
         }
