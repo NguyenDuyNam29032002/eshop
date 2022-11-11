@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,5 +31,13 @@ Route::prefix('categories')->group(function () {
     Route::post('/store', [
         'as' => 'categories.store',
         'uses' => 'CategoryController@store'
+    ]);
+    Route::get('/edit/{id}', [
+        'as' => 'categories.edit',
+        'uses' => 'CategoryController@edit'
+    ]);
+    Route::post('/update/{id}', [
+        'as' => 'categories.update',
+        'uses' => 'CategoryController@update'
     ]);
 });

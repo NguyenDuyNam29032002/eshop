@@ -25,26 +25,7 @@ class CategoryController extends Controller
 
     public function create()
     {
-        $data = $this->category->all();
-//        foreach ($data as $value) {
-//            if ($value ['parent_id'] == 0) {
-//                echo "<option>" . ' ' . $value['name'] . "</option>";
-//
-//                foreach ($data as $value2) {
-//                    if ($value2['parent_id'] == $value['id']) {
-//                        echo "<option>" . '-' . ' ' . $value2['name'] . "</option>";
-//
-//                        foreach ($data as $value3) {
-//                            if ($value3['parent_id'] == $value2['id']) {
-//                                echo "<option>" . '--' . ' ' . $value3['name'] . "</option>";
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-        $recursive = new Recursive($data);
-        $htmlOptions = $recursive->categoryRecursive();
+        $htmlOptions = $this->getCategory($parent_id = '');
         return view('category.add', compact('htmlOptions'));
     }
 
@@ -58,4 +39,28 @@ class CategoryController extends Controller
         return redirect()->route('categories.index');
     }
 
+    public function getCategory($parentID)
+    {
+        $data = $this->category->all();
+        $recursive = new Recursive($data);
+        $htmlOptions = $recursive->categoryRecursive($parentID);
+        return $htmlOptions;
+    }
+
+    public function edit($id)
+    {
+        $category = $this->category->find($id);
+        $htmlOptions = $this->getCategory($category->parent_id);
+        return view('category.edit', compact('category', 'htmlOptions'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $this->category->find($id)->update([
+            'name' => $request->name,
+            'parent_id' => $request->parent_id,
+            'slug' => Str::slug($request->name)
+        ]);
+        return redirect()->route('categories.index');
+    }
 }
