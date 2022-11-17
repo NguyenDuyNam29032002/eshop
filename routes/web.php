@@ -40,4 +40,14 @@ Route::prefix('categories')->group(function () {
         'as' => 'categories.update',
         'uses' => 'CategoryController@update'
     ]);
+    Route::get('/delete/{id}', [
+        'as' => 'categories.delete',
+        'uses' => 'CategoryController@delete'
+    ]);
+});
+Route::prefix('menus')->group(function (){
+    Route::get('/menus', [
+        'as' => 'menus.index',
+        'uses' => 'MenuController@menus'
+    ]);
 });
