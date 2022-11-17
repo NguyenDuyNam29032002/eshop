@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MenuController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,8 +47,16 @@ Route::prefix('categories')->group(function () {
     ]);
 });
 Route::prefix('menus')->group(function (){
-    Route::get('/menus', [
+    Route::get('/', [
         'as' => 'menus.index',
-        'uses' => 'MenuController@menus'
+        'uses' => 'MenuController@index'
+    ]);
+    Route::get('/create', [
+        'as' => 'menus.create',
+        'uses' => 'MenuController@create'
+    ]);
+    Route::get('/store', [
+        'as' => 'menus.store',
+        'uses' => 'MenuController@store'
     ]);
 });
