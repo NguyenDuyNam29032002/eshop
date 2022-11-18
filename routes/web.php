@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MenuController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,7 +47,7 @@ Route::prefix('categories')->group(function () {
         'uses' => 'CategoryController@delete'
     ]);
 });
-Route::prefix('menus')->group(function (){
+Route::prefix('menus')->group(function () {
     Route::get('/', [
         'as' => 'menus.index',
         'uses' => 'MenuController@index'
@@ -55,8 +56,20 @@ Route::prefix('menus')->group(function (){
         'as' => 'menus.create',
         'uses' => 'MenuController@create'
     ]);
-    Route::get('/store', [
+    Route::post('/store', [
         'as' => 'menus.store',
         'uses' => 'MenuController@store'
+    ]);
+    Route::get('/edit/{id}', [
+        'as' => 'menus.edit',
+        'uses' => 'MenuController@edit'
+    ]);
+    Route::post('/update/{id}', [
+        'as' => 'menus.update',
+        'uses' => 'MenuController@update'
+    ]);
+    Route::get('/delete/{id}', [
+        'as' => 'menus.delete',
+        'uses' => 'MenuController@delete'
     ]);
 });

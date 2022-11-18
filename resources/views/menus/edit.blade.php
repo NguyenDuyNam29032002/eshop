@@ -8,18 +8,18 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        @include('partials.content-header', ['name' => 'menus', 'key' => 'Add'])
+        @include('partials.content-header', ['name' => 'menus', 'key' => 'Edit'])
         <!-- /.content-header -->
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="{{ route('menus.store') }}" method="post">
+                        <form action="{{ route('menus.update', ['id' => $menuFollowIdEdit->id]) }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label>Tên menus</label>
-                                <input type="text" class="form-control" placeholder="Nhập tên menu" name="name">
+                                <input type="text" class="form-control" placeholder="Nhập tên menu" name="name" value="{{$menuFollowIdEdit->name}}">
                             </div>
                             <div class="form-group">
                                 <label>--Chọn menu cha</label>
