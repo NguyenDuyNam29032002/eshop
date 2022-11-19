@@ -3,19 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use function Symfony\Component\String\b;
 
 class AdminController extends Controller
 {
-    public function AdminLogin()
+    public function loginAdmin()
     {
-        if (auth()->check()) {
-            return redirect()->to('home');
-        }
         return view('login');
     }
 
-    public function postloginAdmin(Request $request)
+    public function postLoginAdmin(Request $request)
     {
         $remember = $request->has('remember_me') ? true : false;
         if (auth()->attempt([

@@ -15,8 +15,8 @@ use App\Http\Controllers\MenuController;
 |
 */
 
-Route::get('/admin', 'AdminController@AdminLogin');
-Route::post('/admin', 'AdminController@postloginAdmin');
+Route::get('/', 'AdminController@loginAdmin');
+Route::post('/', 'AdminController@postLoginAdmin');
 
 Route::get('/home', function () {
     return view('home');
