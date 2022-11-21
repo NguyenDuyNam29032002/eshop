@@ -51,7 +51,7 @@
                             </select>
                             <div class="form-group">
                                 <label>Nhập mô tả sản phẩm</label>
-                                <textarea class="form-control" rows="3" name="content"></textarea>
+                                <textarea id="editor1" class="form-control" rows="3" name="content"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
@@ -68,7 +68,8 @@
 @section('js')
     <script src="{{asset('vendor/select2/select2.min.js')}}"></script>
     <script src="{{asset('admin/products/add/add.js')}}"></script>
-
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script> CKEDITOR.replace('editor1'); </script>
 @endsection
 
 
