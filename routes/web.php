@@ -85,6 +85,9 @@ Route::prefix('admin')->group(function (){
             'as' => 'product.create',
             'uses' => 'AdminProductController@create'
         ]);
+
     });
+    Route::get('ckeditor', 'AdminProductController@ckeditor');
+
 });
 

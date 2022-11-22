@@ -51,8 +51,9 @@
                             </select>
                             <div class="form-group">
                                 <label>Nhập mô tả sản phẩm</label>
-                                <textarea id="editor1" class="form-control" rows="3" name="content"></textarea>
+
                             </div>
+                            <div id="editor"></div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
@@ -68,8 +69,24 @@
 @section('js')
     <script src="{{asset('vendor/select2/select2.min.js')}}"></script>
     <script src="{{asset('admin/products/add/add.js')}}"></script>
+
+{{--    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>--}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>
+
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script> CKEDITOR.replace('editor1'); </script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ), )
+            .catch( error => {
+                console.error( error );
+            } );
+
+        ClassicEditor.replace( 'description', {
+            filebrowserUploadUrl: "",
+            filebrowserUploadMethod: 'form'
+        });
+    </script>
+
 @endsection
 
 
