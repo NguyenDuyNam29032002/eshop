@@ -51,9 +51,11 @@
                             </select>
                             <div class="form-group">
                                 <label>Nhập mô tả sản phẩm</label>
-
                             </div>
-                            <div id="editor"></div>
+                            <div class="form-group col-md-12">
+                                <label>Content</label>
+                                <textarea name="txtContent" class="form-control " id="editor1"></textarea>
+                            </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
@@ -63,6 +65,15 @@
         </div>
         <!-- /.content -->
     </div>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script>CKEDITOR.replace( 'editor1', {
+            filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
+            filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
+            filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
+            filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+            filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+            filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
+        } ); </script>
     <!-- /.content-wrapper -->
 @endsection
 
@@ -72,21 +83,6 @@
 
 {{--    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>--}}
     <script src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>
-
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script>
-        ClassicEditor
-            .create( document.querySelector( '#editor' ), )
-            .catch( error => {
-                console.error( error );
-            } );
-
-        ClassicEditor.replace( 'description', {
-            filebrowserUploadUrl: "",
-            filebrowserUploadMethod: 'form'
-        });
-    </script>
-
 @endsection
 
 
