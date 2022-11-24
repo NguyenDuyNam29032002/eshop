@@ -13,12 +13,13 @@ class AdminController extends Controller
 
     public function postLoginAdmin(Request $request)
     {
-        $remember = $request->has('remember_me') ? true : false;
+        $remember = $request->has('remember_key') ? true : false;
         if (auth()->attempt([
             'email' => $request->email,
             'password' => $request->password
-        ], $remember)) {
+        ], $remember))
+        {
             return redirect()->to('home');
-        }
+        };
     }
 }
