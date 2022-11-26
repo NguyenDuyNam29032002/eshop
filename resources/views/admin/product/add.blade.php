@@ -40,7 +40,7 @@
                             </div>
                             <div class="form-group">
                                 <label>--Chọn danh mục</label>
-                                <select class="form-control select2_init" name="parent_id">
+                                <select class="form-control select2_init" name="category_id">
                                     <option value="0">Chọn danh mục cha</option>
                                     {!!$htmlOptions !!}
                                 </select>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label>Content</label>
-                                <textarea name="txtContent" class="form-control " id="editor1"></textarea>
+                                <textarea name="contents" class="form-control " id="editor1"></textarea>
                             </div>
                             <button type="submit" class="btn btn-success">Add product</button>
                         </form>
