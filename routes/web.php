@@ -22,7 +22,7 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::prefix('admin')->group(function (){
+Route::prefix('admin')->group(function () {
     Route::prefix('categories')->group(function () {
         Route::get('/', [
             'as' => 'categories.index',
@@ -85,7 +85,10 @@ Route::prefix('admin')->group(function (){
             'as' => 'product.create',
             'uses' => 'AdminProductController@create'
         ]);
-
+        Route::post('/store', [
+            'as' => 'product.store',
+            'uses' => 'AdminProductController@store'
+        ]);
     });
     Route::get('ckeditor', 'AdminProductController@ckeditor');
 

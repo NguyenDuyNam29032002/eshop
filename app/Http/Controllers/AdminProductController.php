@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Components\Recursive;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminProductController extends Controller
 {
@@ -31,4 +32,11 @@ class AdminProductController extends Controller
         $htmlOptions = $recursive->categoryRecursive($parentID);
         return $htmlOptions;
     }
+    public function store(Request $request)
+    {
+        $filename = $request->feature_image_path->getClientOriginalName();
+        $path = $request->file('feature_image_path')->storeAs('public/products', $filename);
+
+    }
+
 }

@@ -6,7 +6,7 @@
 
 @section('css')
     <link href="{{asset('vendor/select2/select2.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('admin/products/add/add.css')}}" rel="stylesheet" />
+    <link href="{{asset('admins/products/add/add.css')}}" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
@@ -56,7 +56,7 @@
                                 <label>Content</label>
                                 <textarea name="txtContent" class="form-control " id="editor1"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-success">Add product</button>
                         </form>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
 
 @section('js')
     <script src="{{asset('vendor/select2/select2.min.js')}}"></script>
-    <script src="{{asset('admin/products/add/add.js')}}"></script>
+    <script src="{{asset('admins/products/add/add.js')}}"></script>
 
 {{--    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>--}}
     <script src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>
