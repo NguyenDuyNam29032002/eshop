@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Components\Recursive;
 use App\Models\Category;
+use App\Traits\StorageImageTraits;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class AdminProductController extends Controller
 {
+    use StorageImageTraits;
     private $category;
+
     public function __construct(Category $category)
     {
         $this->category = $category;
@@ -25,6 +29,7 @@ class AdminProductController extends Controller
         $htmlOptions = $this->getCategory($parent_id = '');
         return view('admin.product.add', compact('htmlOptions'));
     }
+
     public function getCategory($parentID)
     {
         $data = $this->category->all();
@@ -32,11 +37,12 @@ class AdminProductController extends Controller
         $htmlOptions = $recursive->categoryRecursive($parentID);
         return $htmlOptions;
     }
+
     public function store(Request $request)
     {
-        $filename = $request->feature_image_path->getClientOriginalName();
-        $path = $request->file('feature_image_path')->storeAs('public/products', $filename);
+        $dataUpload = $this->storageTraitUpload($request, 'feature_image_path', 'product');
 
+        dd($dataUpload);
     }
 
 }
