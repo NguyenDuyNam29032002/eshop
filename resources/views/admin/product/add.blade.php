@@ -46,7 +46,7 @@
                                 </select>
                             </div>
                             <label>Tags sản phẩm</label>
-                            <select name="tags" class="form-control  tags_select_choose" multiple = "multiple">
+                            <select name="tags[]" class="form-control  tags_select_choose" multiple = "multiple">
 
                             </select>
                             <div class="form-group">

@@ -6,6 +6,8 @@ use App\Components\Recursive;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\ProductTag;
+use App\Models\Tag;
 use App\Traits\StorageImageTraits;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -18,12 +20,15 @@ class AdminProductController extends Controller
     private $category;
     private $product;
     private $productImage;
-
-    public function __construct(Category $category, Product $product, ProductImage $productImage)
+    private $tag;
+    private $productTag;
+    public function __construct(Category $category, Product $product, ProductImage $productImage, Tag $tag, ProductTag $productTag)
     {
         $this->category = $category;
         $this->product = $product;
         $this->productImage = $productImage;
+        $this->tag = $tag;
+        $this->productTag = $productTag;
     }
 
     public function index()
@@ -68,9 +73,18 @@ class AdminProductController extends Controller
                     'image_path' => $dataProductImageDetail['file_path'],
                     'image_name' => $dataProductImageDetail['file_name']
                 ]);
-
             }
         }
+        //insert tags for products
+        foreach ($request->tags as $tagItem)
+        {
+            //insert
+            $tagInstance = $this->tag->firstOrCreate([
+                'name' => $tagItem
+            ]);
+            $tagIds[] = $tagInstance->id;
+        }
+        $product->tags()->attach($tagIds);
     }
 
 }
