@@ -6,6 +6,9 @@
 namespace AWS\CRT;
 use AWS\CRT\CRT;
 
+/**
+ * @method static error(string $string)
+ */
 final class Log {
     const NONE = 0;
     const FATAL = 1;

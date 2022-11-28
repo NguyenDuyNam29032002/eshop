@@ -3,6 +3,12 @@
 @section('title')
     <title>Add product</title>
 @endsection
+@section('css')
+    <link rel="stylesheet" href="{{asset('admins/products/index/list.css')}}">
+@endsection
+@section('js')
+    <title>Add product</title>
+@endsection
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -31,26 +37,26 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {{--                            @foreach($categories as $category)--}}
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>test 1</td>
-                                <td>1</td>
-                                <td><img src="" alt=""></td>
-                                <td>test</td>
-                                <td>
-                                    <a href="" class="btn btn-success">Edit</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
-                                </td>
-                            </tr>
-                            {{--                            @endforeach--}}
+                            @foreach($products as $productItem)
+                                <tr>
+                                    <th scope="row">{{$productItem->id}}</th>
+                                    <td>{{$productItem->name}}</td>
+                                    <td>{{$productItem->price}}</td>
+                                    <td><img class="product_image_150_100" src="{{$productItem->feature_image_path}}" alt=""></td>
+                                    <td>{{$productItem->category->name}}</td>
+                                    <td>
+                                        <a href="" class="btn btn-success">Edit</a>
+                                        <a href="" class="btn btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="col-md-12">
 
                     </div>
-                    {{--                    {{$categories->links()}}--}}
+                    {{$products->links()}}
                 </div>
                 <!-- /.row -->
             </div><!-- /.container-fluid -->
