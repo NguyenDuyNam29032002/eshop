@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method create()
  * @method paginate(int $int)
  * @method latest()
+ * @method find($id)
  */
 class Product extends Model
 {
@@ -27,5 +28,9 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+    public function productImages()
+    {
+        return $this->hasMany(ProductImage::class, 'product_id');
     }
 }
