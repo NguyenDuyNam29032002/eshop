@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\AdminProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,6 +93,10 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [
             'as' => 'product.edit',
             'uses' => 'AdminProductController@edit'
+        ]);
+        Route::post('update/{id}', [
+            'as' => 'product.update',
+            'uses' => 'AdminProductController@update'
         ]);
     });
     Route::get('ckeditor', 'AdminProductController@ckeditor');
