@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{asset('admins/products/index/list.css')}}">
 @endsection
 @section('js')
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{asset('vendor/sweetAlert2/sweetalert2@11.js')}}"></script>
     <script src="{{asset('admins/products/index/list.js')}}"></script>
 @endsection
 

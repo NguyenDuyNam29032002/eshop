@@ -5,6 +5,7 @@ namespace App\Models;
 use CKSource\CKFinder\Image;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method create()
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
+    use SoftDeletes;
     use HasFactory;
     protected $guarded = [];
     public function images()
