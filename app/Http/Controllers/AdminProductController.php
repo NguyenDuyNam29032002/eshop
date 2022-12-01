@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Components\Recursive;
+use App\Http\Requests\ProductAddRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
@@ -56,7 +57,7 @@ class AdminProductController extends Controller
         return $htmlOptions;
     }
 
-    public function store(Request $request)
+    public function store(ProductAddRequest $request)
     {
         try {
             DB::beginTransaction();
@@ -161,7 +162,7 @@ class AdminProductController extends Controller
     {
         try {
             $this->product->find($id)->delete();
-            return \response()->json([
+            return response()->json([
                 'code' => 200,
                 'message' => 'delete successfully'
             ]);

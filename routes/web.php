@@ -18,6 +18,7 @@ use App\Http\Controllers\AdminProductController;
 
 Route::get('/', 'AdminController@loginAdmin');
 Route::post('/', 'AdminController@postLoginAdmin');
+Route::get('logout', 'AdminController@logout');
 
 Route::get('/home', function () {
     return view('home');
