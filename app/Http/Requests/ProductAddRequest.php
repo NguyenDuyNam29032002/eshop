@@ -25,9 +25,9 @@ class ProductAddRequest extends FormRequest
     {
         return [
             'name' => 'bail|required|unique:products|max:255|min:10',
-            'price' => 'bail|required|',
-            'category' => 'bail|required',
-            'content' => 'bail|required'
+            'price' => 'required|',
+            'category_id' => 'required',
+            'contents' => 'required'
         ];
     }
     public function messages()
@@ -38,8 +38,8 @@ class ProductAddRequest extends FormRequest
             'name.max' => 'Tên sản phẩm không hợp lệ(Quá dài)',
             'name.min' => 'Tên sản phẩm không hợp lệ(Quá ngắn)',
             'price.required' => 'Giá sản phẩm không được để trống',
-            'category.required' => 'Danh mục không được để trống',
-            'content.required' => 'Mô tả sản phẩm không được để trống',
+            'category_id.required' => 'Danh mục không được để trống',
+            'contents.required' => 'Mô tả sản phẩm không được để trống',
         ];
     }
 }

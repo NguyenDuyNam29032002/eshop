@@ -29,8 +29,7 @@
                     <a href="{{ route('categories.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
-                            Danh sách sản phẩm
-                            <span class="right badge badge-danger">New</span>
+                            Danh Mục
                         </p>
                     </a>
                 </li>

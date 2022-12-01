@@ -5,8 +5,8 @@
 @endsection
 
 @section('css')
-    <link href="{{asset('vendor/select2/select2.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('admins/products/add/add.css')}}" rel="stylesheet" />
+    <link href="{{asset('vendor/select2/select2.min.css')}}" rel="stylesheet"/>
+    <link href="{{asset('admins/products/add/add.css')}}" rel="stylesheet"/>
 @endsection
 
 @section('content')
@@ -15,15 +15,15 @@
         <!-- Content Header (Page header) -->
         @include('partials.content-header', ['name' => 'product', 'key' => 'Add'])
         <div class="col-md-12">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            {{--            @if ($errors->any())--}}
+            {{--                <div class="alert alert-danger">--}}
+            {{--                    <ul>--}}
+            {{--                        @foreach ($errors->all() as $error)--}}
+            {{--                            <li>{{ $error }}</li>--}}
+            {{--                        @endforeach--}}
+            {{--                    </ul>--}}
+            {{--                </div>--}}
+            {{--            @endif--}}
         </div>
         <!-- /.content-header -->
         <!-- Main content -->
@@ -35,15 +35,25 @@
                             @csrf
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
-                                <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" name="name">
+                                <input type="text"
+                                       class="form-control @error('name') is-invalid @enderror"
+                                       placeholder="Nhập tên sản phẩm" name="name"
+                                >
+                                @error('name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Giá</label>
-                                <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" name="price">
+                                <input type="text" class="form-control @error('price') is-invalid @enderror" placeholder="Nhập tên sản phẩm" name="price">
+                                @error('price')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Ảnh minh họa</label>
-                                <input type="file" class="form-control-file" name="feature_image_path">
+                                <input type="file" class="form-control-file " name="feature_image_path">
+
                             </div>
                             <div class="form-group">
                                 <label>Ảnh chi tiết</label>
@@ -51,13 +61,17 @@
                             </div>
                             <div class="form-group">
                                 <label>--Chọn danh mục</label>
-                                <select class="form-control select2_init" name="category_id">
-                                    <option value="0">Chọn danh mục cha</option>
+                                <select class="form-control select2_init @error('category_id') is-invalid @enderror" name="category_id">
+                                    <option value="">Chọn danh mục cha</option>
                                     {!!$htmlOptions !!}
                                 </select>
+{{--                                @dd($errors)--}}
+                                @error('category_id')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <label>Tags sản phẩm</label>
-                            <select name="tags[]" class="form-control  tags_select_choose" multiple = "multiple">
+                            <select name="tags[]" class="form-control  tags_select_choose" multiple="multiple">
 
                             </select>
                             <div class="form-group">
@@ -65,7 +79,10 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label>Content</label>
-                                <textarea name="contents" class="form-control " id="editor1"></textarea>
+                                <textarea name="contents" class="form-control @error('contents') is-invalid @enderror" id="editor1"></textarea>
+                                @error('contents')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-success">Add product</button>
                         </form>
@@ -77,14 +94,14 @@
         <!-- /.content -->
     </div>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script>CKEDITOR.replace( 'editor1', {
+    <script>CKEDITOR.replace('editor1', {
             filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
             filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
             filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
             filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
             filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
             filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
-        } ); </script>
+        }); </script>
     <!-- /.content-wrapper -->
 @endsection
 
@@ -92,7 +109,7 @@
     <script src="{{asset('vendor/select2/select2.min.js')}}"></script>
     <script src="{{asset('admins/products/add/add.js')}}"></script>
 
-{{--    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>--}}
+    {{--    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>--}}
     <script src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>
 @endsection
 
