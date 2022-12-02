@@ -104,6 +104,16 @@ Route::prefix('admin')->group(function () {
             'uses' => 'AdminProductController@delete'
         ]);
     });
+    Route::prefix('slider')->group(function () {
+        Route::get('/', [
+            'as' => 'banner.index',
+            'uses' => 'BannerAdminController@index'
+        ]);
+        Route::get('/create', [
+            'as' => 'banner.create',
+            'uses' => 'BannerAdminController@create'
+        ]);
+    });
     Route::get('ckeditor', 'AdminProductController@ckeditor');
 
 });

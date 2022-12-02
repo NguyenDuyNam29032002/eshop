@@ -14,17 +14,6 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         @include('partials.content-header', ['name' => 'product', 'key' => 'Add'])
-        <div class="col-md-12">
-            {{--            @if ($errors->any())--}}
-            {{--                <div class="alert alert-danger">--}}
-            {{--                    <ul>--}}
-            {{--                        @foreach ($errors->all() as $error)--}}
-            {{--                            <li>{{ $error }}</li>--}}
-            {{--                        @endforeach--}}
-            {{--                    </ul>--}}
-            {{--                </div>--}}
-            {{--            @endif--}}
-        </div>
         <!-- /.content-header -->
         <!-- Main content -->
         <div class="content">
@@ -37,7 +26,7 @@
                                 <label>Tên sản phẩm</label>
                                 <input type="text"
                                        class="form-control @error('name') is-invalid @enderror"
-                                       placeholder="Nhập tên sản phẩm" name="name"
+                                       placeholder="Nhập tên sản phẩm" name="name" value="{{old('name')}}"
                                 >
                                 @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -45,7 +34,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Giá</label>
-                                <input type="text" class="form-control @error('price') is-invalid @enderror" placeholder="Nhập tên sản phẩm" name="price">
+                                <input type="text" class="form-control @error('price') is-invalid @enderror"
+                                       placeholder="Nhập tên sản phẩm" name="price" value="{{old('price')}}">
                                 @error('price')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -61,11 +51,11 @@
                             </div>
                             <div class="form-group">
                                 <label>--Chọn danh mục</label>
-                                <select class="form-control select2_init @error('category_id') is-invalid @enderror" name="category_id">
+                                <select class="form-control select2_init @error('category_id') is-invalid @enderror"
+                                        name="category_id">
                                     <option value="">Chọn danh mục cha</option>
                                     {!!$htmlOptions !!}
                                 </select>
-{{--                                @dd($errors)--}}
                                 @error('category_id')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -79,7 +69,8 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label>Content</label>
-                                <textarea name="contents" class="form-control @error('contents') is-invalid @enderror" id="editor1"></textarea>
+                                <textarea name="contents" class="form-control @error('contents') is-invalid @enderror"
+                                          id="editor1">{{old('contents')}}</textarea>
                                 @error('contents')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
