@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title')
-    <title>eshop</title>
+@section('css')
+   <link rel="stylesheet" href="{{asset('admins/Banners/index/index.css')}}"
 @endsection
 
 @section('content')
@@ -30,12 +30,12 @@
                             </tr>
                             </thead>
                             <tbody>
-{{--                            @foreach($menus as $menu)--}}
+                            @foreach($banners as $banner)
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Trang chủ</td>
-                                    <td>description</td>
-                                    <td>img</td>
+                                    <th scope="row">{{$banner->id}}</th>
+                                    <td>{{$banner->name}}</td>
+                                    <td>{{$banner->descriptions}}</td>
+                                    <td><img class="img-banner" width="150px" height="100px" src="{{$banner->image_path}}" alt=""></td>
                                     <td>
                                         <a href=""
                                            class="btn btn-success">Edit</a>
@@ -43,14 +43,14 @@
                                            class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
-{{--                            @endforeach--}}
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="col-md-12">
 
                     </div>
-{{--                    {{$menus->links()}}--}}
+                    {{$banners->links()}}
                 </div>
                 <!-- /.row -->
             </div><!-- /.container-fluid -->

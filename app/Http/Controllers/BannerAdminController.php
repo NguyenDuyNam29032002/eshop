@@ -21,7 +21,8 @@ class BannerAdminController extends Controller
 
     public function index()
     {
-        return view('admin.banner.index');
+        $banners = $this->banner->latest()->paginate(5);
+        return view('admin.banner.index', compact('banners'));
     }
 
     public function create()

@@ -113,11 +113,11 @@ Route::prefix('admin')->group(function () {
             'as' => 'banner.create',
             'uses' => 'BannerAdminController@create'
         ]);
+        Route::post('/store', [
+            'as' => 'banner.store',
+            'uses' => 'BannerAdminController@store'
+        ]);
     });
-    Route::post('/store', [
-        'as' => 'banner.store',
-        'uses' => 'BannerAdminController@store'
-    ]);
     Route::get('ckeditor', 'AdminProductController@ckeditor');
 
 });
