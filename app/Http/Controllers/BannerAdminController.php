@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BannerAddRequest;
 use Illuminate\Http\Request;
 
 class BannerAdminController extends Controller
@@ -13,5 +14,9 @@ class BannerAdminController extends Controller
     public function create()
     {
         return view('admin.banner.add');
+    }
+    public function store(BannerAddRequest $request)
+    {
+        dd('1');
     }
 }
