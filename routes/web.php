@@ -117,6 +117,14 @@ Route::prefix('admin')->group(function () {
             'as' => 'banner.store',
             'uses' => 'BannerAdminController@store'
         ]);
+        Route::get('/edit/{id}', [
+            'as' => 'banner.edit',
+            'uses' => 'BannerAdminController@edit'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'banner.update',
+            'uses' => 'BannerAdminController@update'
+        ]);
     });
     Route::get('ckeditor', 'AdminProductController@ckeditor');
 

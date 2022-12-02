@@ -44,7 +44,32 @@ class BannerAdminController extends Controller
             }
             $this->banner->create($dataInsert);
             return redirect()->route('banner.index');
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
+            Log::error('Lỗi' . $exception->getMessage() . '---Line: ' . $exception->getLine());
+        }
+    }
+
+    public function edit($id)
+    {
+        $banner = $this->banner->find($id);
+        return view('admin.banner.edit', compact('banner'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $datUpdate = [
+                'name' => $request->name,
+                'descriptions' => $request->descriptions
+            ];
+            $dataImageBanner = $this->storageTraitUpload($request, 'image_path', 'banner');
+            if (!empty($dataImageBanner)) {
+                $datUpdate['image_name'] = $dataImageBanner['file_name'];
+                $datUpdate['image_path'] = $dataImageBanner['file_path'];
+            }
+            $this->banner->find($id)->update($datUpdate);
+            return redirect()->route('banner.index');
+        } catch (\Exception $exception) {
             Log::error('Lỗi' . $exception->getMessage() . '---Line: ' . $exception->getLine());
         }
     }

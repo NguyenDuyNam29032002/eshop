@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method create(array $array)
  * @method paginate(int $int)
  * @method latest()
+ * @method find($id)
  */
 class Banner extends Model
 {

@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('title')
+    <title>Banner</title>
+@endsection
 @section('css')
    <link rel="stylesheet" href="{{asset('admins/Banners/index/index.css')}}"
 @endsection
@@ -37,7 +40,7 @@
                                     <td>{{$banner->descriptions}}</td>
                                     <td><img class="img-banner" width="150px" height="100px" src="{{$banner->image_path}}" alt=""></td>
                                     <td>
-                                        <a href=""
+                                        <a href="{{route('banner.edit', ['id' => $banner->id])}}"
                                            class="btn btn-success">Edit</a>
                                         <a href=""
                                            class="btn btn-danger">Delete</a>
