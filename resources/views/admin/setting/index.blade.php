@@ -48,7 +48,7 @@
                                     <td>{{$setting->config_key}}</td>
                                     <td>{{$setting->config_value}}</td>
                                     <td>
-                                        <a href="{{route('settings.edit', ['id' => $setting->id])}}"
+                                        <a href="{{route('settings.edit', ['id' => $setting->id]) . '?type=' . $setting->type}}"
                                            class="btn btn-success">Edit</a>
                                         <a href=""
                                            class="btn btn-danger">Delete</a>

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @method create(array $array)
  * @method latest()
+ * @method find($id)
  */
 class Setting extends Model
 {
