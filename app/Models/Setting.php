@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method create(array $array)
+ * @method latest()
  */
 class Setting extends Model
 {
