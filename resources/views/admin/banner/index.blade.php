@@ -6,7 +6,10 @@
 @section('css')
    <link rel="stylesheet" href="{{asset('admins/Banners/index/index.css')}}"
 @endsection
-
+@section('js')
+    <script src="{{asset('vendor/sweetAlert2/sweetalert2@11.js')}}"></script>
+    <script src="{{asset('admins/banners/index/index.js')}}"></script>
+@endsection
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -43,7 +46,8 @@
                                         <a href="{{route('banner.edit', ['id' => $banner->id])}}"
                                            class="btn btn-success">Edit</a>
                                         <a href=""
-                                           class="btn btn-danger">Delete</a>
+                                           data-url="{{route('banner.delete', ['id' => $banner->id])}}"
+                                           class="btn btn-danger action_delete">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -125,6 +125,20 @@ Route::prefix('admin')->group(function () {
             'as' => 'banner.update',
             'uses' => 'BannerAdminController@update'
         ]);
+        Route::get('/delete/{id}', [
+            'as' => 'banner.delete',
+            'uses' => 'BannerAdminController@delete'
+        ]);
+    });
+    Route::prefix('settings')->group(function () {
+        Route::get('/', [
+            'as' => 'settings.index',
+            'uses' => 'AdminSettingController@index'
+        ]);
+        Route::get('/create', [
+            'as' => 'settings.create',
+            'uses' => 'AdminSettingController@create'
+        ]);
     });
     Route::get('ckeditor', 'AdminProductController@ckeditor');
 

@@ -73,4 +73,21 @@ class BannerAdminController extends Controller
             Log::error('Lỗi' . $exception->getMessage() . '---Line: ' . $exception->getLine());
         }
     }
+
+    public function delete($id)
+    {
+        try {
+            $this->banner->find($id)->delete();
+            return response()->json([
+                'code' => 200,
+                'message' => 'delete successfully'
+            ], 200);
+        } catch (\Exception $exception) {
+            Log::error('Lỗi' . $exception->getMessage() . '---Line: ' . $exception->getLine());
+            return response()->json([
+                'code' => 500,
+                'message' => 'error'
+            ], 500);
+        }
+    }
 }

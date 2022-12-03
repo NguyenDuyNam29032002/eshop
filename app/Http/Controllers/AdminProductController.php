@@ -165,7 +165,7 @@ class AdminProductController extends Controller
             return response()->json([
                 'code' => 200,
                 'message' => 'delete successfully'
-            ]);
+            ], 200);
         } catch (Exception $exception) {
             Log::error('Message: ' . $exception->getMessage() . 'Line: ' . $exception->getLine());
             return response()->json([
