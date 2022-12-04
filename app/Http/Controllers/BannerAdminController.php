@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BannerAddRequest;
 use App\Models\Banner;
+use App\Traits\deleteModelTrait;
 use App\Traits\StorageImageTraits;
 use AWS\CRT\Log;
 use Illuminate\Http\Request;
 
 class BannerAdminController extends Controller
 {
+    use deleteModelTrait;
     use StorageImageTraits;
 
     private $banner;
@@ -76,18 +78,6 @@ class BannerAdminController extends Controller
 
     public function delete($id)
     {
-        try {
-            $this->banner->find($id)->delete();
-            return response()->json([
-                'code' => 200,
-                'message' => 'delete successfully'
-            ], 200);
-        } catch (\Exception $exception) {
-            Log::error('Lỗi' . $exception->getMessage() . '---Line: ' . $exception->getLine());
-            return response()->json([
-                'code' => 500,
-                'message' => 'error'
-            ], 500);
-        }
+        return $this->deleteModelTrait($id, $this->banner);
     }
 }

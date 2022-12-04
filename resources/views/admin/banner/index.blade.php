@@ -8,7 +8,7 @@
 @endsection
 @section('js')
     <script src="{{asset('vendor/sweetAlert2/sweetalert2@11.js')}}"></script>
-    <script src="{{asset('admins/banners/index/index.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admins/main.js')}}"></script>
 @endsection
 @section('content')
     <!-- Content Wrapper. Contains page content -->

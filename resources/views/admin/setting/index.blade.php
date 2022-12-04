@@ -6,6 +6,10 @@
 @section('css')
    <link rel="stylesheet" href="{{asset('admins/setting/index/index.css')}}">
 @endsection
+@section('js')
+    <script src="{{asset('vendor/sweetAlert2/sweetalert2@11.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admins/main.js')}}"></script>
+@endsection
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -51,7 +55,8 @@
                                         <a href="{{route('settings.edit', ['id' => $setting->id]) . '?type=' . $setting->type}}"
                                            class="btn btn-success">Edit</a>
                                         <a href=""
-                                           class="btn btn-danger">Delete</a>
+                                           data-url="{{route('settings.delete', ['id' => $setting->id])}}"
+                                           class="btn btn-danger action_delete">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

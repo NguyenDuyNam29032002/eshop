@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AddSettingRequest;
 use App\Models\Setting;
+use App\Traits\deleteModelTrait;
+use AWS\CRT\Log;
 use Illuminate\Http\Request;
+use PHPUnit\Exception;
 
 class AdminSettingController extends Controller
 {
+    use deleteModelTrait;
     private $setting;
 
     public function __construct(Setting $setting)
@@ -49,5 +53,10 @@ class AdminSettingController extends Controller
             'config_value' => $request->config_value
         ]);
         return redirect()->route('settings.index');
+    }
+
+    public function delete($id)
+    {
+       return $this->deleteModelTrait($id, $this->setting);
     }
 }

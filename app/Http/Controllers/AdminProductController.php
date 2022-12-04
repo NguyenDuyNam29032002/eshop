@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductTag;
 use App\Models\Tag;
+use App\Traits\deleteModelTrait;
 use App\Traits\StorageImageTraits;
 use AWS\CRT\Log;
 use http\Env\Response;
@@ -21,6 +22,7 @@ use PHPUnit\Exception;
 class AdminProductController extends Controller
 {
     use StorageImageTraits;
+    use deleteModelTrait;
 
     private $category;
     private $product;
@@ -160,18 +162,6 @@ class AdminProductController extends Controller
 
     public function delete($id)
     {
-        try {
-            $this->product->find($id)->delete();
-            return response()->json([
-                'code' => 200,
-                'message' => 'delete successfully'
-            ], 200);
-        } catch (Exception $exception) {
-            Log::error('Message: ' . $exception->getMessage() . 'Line: ' . $exception->getLine());
-            return response()->json([
-                'code' => 500,
-                'message' => 'delete fail'
-            ], 500);
-        }
+        return $this->deleteModelTrait($id, $this->product);
     }
 }
