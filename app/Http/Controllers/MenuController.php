@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Components\MenuRecursive;
 use App\Models\Menu;
+use App\Traits\deleteModelTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 
 class MenuController extends Controller
 {
+    use deleteModelTrait;
     private $menuRecursive;
     private $menu;
 
@@ -60,7 +62,8 @@ class MenuController extends Controller
 
     public function delete($id)
     {
-        $this->menu->find($id)->delete();
-        return redirect()->route('menus.index');
+//        $this->menu->find($id)->delete();
+//        return redirect()->route('menus.index');
+    return $this->deleteModelTrait($id, $this->menu);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Traits\deleteModelTrait;
 use Illuminate\Http\Request;
 use App\Components\Recursive;
 use Illuminate\Support\Str;
@@ -10,6 +11,7 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+    use deleteModelTrait;
     private $category;
 
     public function __construct(Category $category)
@@ -66,8 +68,9 @@ class CategoryController extends Controller
 
     public function delete($id)
     {
-        $this->category->find($id)->delete();
-        return redirect()->route('categories.index');
+//        $this->category->find($id)->delete();
+//        return redirect()->route('categories.index');
+        return $this->deleteModelTrait($id, $this->category);
     }
 }
 
