@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 class MenuController extends Controller
 {
     use deleteModelTrait;
+
     private $menuRecursive;
     private $menu;
 
@@ -62,8 +63,6 @@ class MenuController extends Controller
 
     public function delete($id)
     {
-//        $this->menu->find($id)->delete();
-//        return redirect()->route('menus.index');
-    return $this->deleteModelTrait($id, $this->menu);
+        return $this->deleteModelTrait($id, $this->menu);
     }
 }
