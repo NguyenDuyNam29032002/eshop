@@ -166,6 +166,14 @@ Route::prefix('admin')->group(function () {
             'as' => 'users.create',
             'uses' => 'AdminUsersController@create'
         ]);
+        Route::post('/store', [
+            'as' => 'users.store',
+            'uses' => 'AdminUsersController@store'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'users.edit',
+            'uses' => 'AdminUsersController@edit'
+        ]);
     });
     Route::get('ckeditor', 'AdminProductController@ckeditor');
 

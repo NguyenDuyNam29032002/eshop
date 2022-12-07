@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use AWS\CRT\Log;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AdminUsersController extends Controller
 {
@@ -22,9 +25,35 @@ class AdminUsersController extends Controller
         $users = $this->user->paginate(5);
         return view('admin.user.index', compact('users'));
     }
+
     public function create()
     {
-        $roles =$this->role->all();
+        $roles = $this->role->all();
         return view('admin.user.add', compact('roles'));
+    }
+
+    public function store(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $user = $this->user->create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ]);
+            $user->roles()->attach($request->role_id);
+            DB::commit();
+            return redirect()->route('users.index');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            Log::error('message' . $exception->getMessage() . '--- line' . $exception->getLine());
+        }
+    }
+    public function edit($id)
+    {
+        $roles = $this->role->all();
+        $user = $this->user->find($id);
+        $rolesOfUser = $user->roles;
+        return view('admin.user.edit', compact('roles', 'user', 'rolesOfUser'));
     }
 }
