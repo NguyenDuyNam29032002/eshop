@@ -183,6 +183,16 @@ Route::prefix('admin')->group(function () {
             'uses' => 'AdminUsersController@delete'
         ]);
     });
+    Route::prefix('roles')->group(function () {
+        Route::get('/', [
+            'as' => 'roles.index',
+            'uses' => 'AdminRolesController@index'
+        ]);
+        Route::get('/create', [
+            'as' => 'roles.create',
+            'uses' => 'AdminRolesController@create'
+        ]);
+    });
     Route::get('ckeditor', 'AdminProductController@ckeditor');
 
 });

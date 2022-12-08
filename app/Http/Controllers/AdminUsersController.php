@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminUserAddRequest;
 use App\Models\Role;
 use App\Models\User;
 use App\Traits\deleteModelTrait;
@@ -35,7 +36,7 @@ class AdminUsersController extends Controller
         return view('admin.user.add', compact('roles'));
     }
 
-    public function store(Request $request)
+    public function store(AdminUserAddRequest $request)
     {
         try {
             DB::beginTransaction();

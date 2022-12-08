@@ -27,18 +27,36 @@
                             @csrf
                             <div class="form-group">
                                 <label>Tên</label>
-                                <input type="text" class="form-control"
-                                       placeholder="Nhập tên" name="name" value="{{old('name')}}">
+                                <input type="text"
+                                       class="form-control  @error('name') is-invalid @enderror"
+                                       placeholder="Nhập tên"
+                                       name="name"
+                                       value="{{old('name')}}">
+                                @error('name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="text" class="form-control"
-                                       placeholder="Nhập tên email" name="email" value="{{old('email')}}">
+                                <input type="text"
+                                       class="form-control @error('email') is-invalid @enderror"
+                                       placeholder="Nhập tên email"
+                                       name="email"
+                                       value="{{old('email')}}">
+                                @error('email')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Mật khẩu</label>
-                                <input type="password" class="form-control"
-                                       placeholder="Nhập tên mật khẩu" name="password" value="{{old('password')}}">
+                                <input type="password"
+                                       class="form-control @error('password')is-invalid @enderror"
+                                       placeholder="Nhập tên mật khẩu"
+                                       name="password"
+                                       value="{{old('password')}}">
+                                @error('password')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Vai trò</label>
