@@ -44,6 +44,7 @@
                                         <a href="{{route('users.edit', ['id' => $user->id])}}"
                                            class="btn btn-success">Edit</a>
                                         <a href=""
+                                           data-url="{{route('users.delete', ['id' => $user->id])}}"
                                            class="btn btn-danger action_delete">Delete</a>
                                     </td>
                                 </tr>

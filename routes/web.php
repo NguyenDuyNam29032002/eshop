@@ -174,6 +174,14 @@ Route::prefix('admin')->group(function () {
             'as' => 'users.edit',
             'uses' => 'AdminUsersController@edit'
         ]);
+        Route::post('/update/{id}', [
+            'as' => 'users.update',
+            'uses' => 'AdminUsersController@update'
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'users.delete',
+            'uses' => 'AdminUsersController@delete'
+        ]);
     });
     Route::get('ckeditor', 'AdminProductController@ckeditor');
 
