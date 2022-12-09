@@ -192,6 +192,10 @@ Route::prefix('admin')->group(function () {
             'as' => 'roles.create',
             'uses' => 'AdminRolesController@create'
         ]);
+        Route::post('/store', [
+            'as' => 'roles.store',
+            'uses' => 'AdminRolesController@store'
+        ]);
     });
     Route::get('ckeditor', 'AdminProductController@ckeditor');
 
