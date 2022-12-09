@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @method paginate(int $int)
  * @method create()
+ * @method find($id)
  */
 class Role extends Model
 {
