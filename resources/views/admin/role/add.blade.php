@@ -4,12 +4,11 @@
     <title>Roles</title>
 @endsection
 @section('css')
-    <link rel="stylesheet" href="{{asset('admins/Banners/add/add.css')}}">
-    <style>
-        .card-header {
-            background-color: #00A000;
-        }
-    </style>
+   <link rel="stylesheet" href="{{asset('admins/role/add.css')}}"/>
+
+@endsection
+@section('js')
+   <script src="{{asset('admins/role/add.js')}}"></script>
 @endsection
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -35,7 +34,7 @@
                             <div class="form-group">
                                 <label>Mô tả vai trò</label>
                                 <textarea class="form-control"
-                                          name="descriptions"
+                                          name="display_name"
                                           rows="4">
                                     {{old('display_name')}}
                                 </textarea>
@@ -47,16 +46,18 @@
                                     <div class="card border-primary mb-3 col-md-12">
                                         <div class="card-header">
                                             <label for="">
-                                                <input type="checkbox" value="">
+                                                <input type="checkbox" value="" class="checkbox_wrapper">
                                             </label>
                                             module {{$permissionParentItem->name}}
                                         </div>
                                         <div class="row">
-                                           @foreach($permissionParentItem->PermissionsChildren as $PermissionsChildrenItem)
+                                            @foreach($permissionParentItem->PermissionsChildren as $PermissionsChildrenItem)
                                                 <div class="card-body text-primary col-md-3">
                                                     <h5 class="card-title">
                                                         <label for="">
-                                                            <input type="checkbox" value="">
+                                                            <input type="checkbox" class="checkbox_children"
+                                                                   name="permission_id[]"
+                                                                   value="{{$PermissionsChildrenItem->id}}">
                                                         </label>
                                                         {{$PermissionsChildrenItem->name}}
                                                     </h5>
