@@ -6,7 +6,7 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('admins/Banners/add/add.css')}}">
     <style>
-        .card-header{
+        .card-header {
             background-color: #00A000;
         }
     </style>
@@ -43,28 +43,28 @@
                         </div>
                         <div class="col-md-12">
                             <div class="row">
-
+                                @foreach($permissionParent as $permissionParentItem)
                                     <div class="card border-primary mb-3 col-md-12">
                                         <div class="card-header">
                                             <label for="">
                                                 <input type="checkbox" value="">
                                             </label>
-                                            module sp
+                                            module {{$permissionParentItem->name}}
                                         </div>
                                         <div class="row">
-                                            @for($i = 1; $i <= 4; $i++)
+                                           @foreach($permissionParentItem->PermissionsChildren as $PermissionsChildrenItem)
                                                 <div class="card-body text-primary col-md-3">
                                                     <h5 class="card-title">
                                                         <label for="">
                                                             <input type="checkbox" value="">
                                                         </label>
-                                                        Thêm sản phẩm
+                                                        {{$PermissionsChildrenItem->name}}
                                                     </h5>
                                                 </div>
-                                            @endfor
+                                            @endforeach
                                         </div>
                                     </div>
-
+                                @endforeach
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
