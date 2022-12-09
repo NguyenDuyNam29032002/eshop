@@ -44,6 +44,7 @@
                                         <a href="{{route('roles.edit', ['id' => $role->id])}}"
                                            class="btn btn-success">Edit</a>
                                         <a href=""
+                                           data-url="{{route('roles.delete', ['id' => $role->id])}}"
                                            class="btn btn-danger action_delete">Delete</a>
                                     </td>
                                 </tr>
