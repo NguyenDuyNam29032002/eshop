@@ -6,7 +6,7 @@ use App\Http\Requests\AdminUserAddRequest;
 use App\Models\Role;
 use App\Models\User;
 use App\Traits\deleteModelTrait;
-use AWS\CRT\Log;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;

@@ -52,4 +52,20 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
     }
+    public function checkPermissionAccess($PermissionCheck)
+    {
+
+        //b1:lấy đc các quyền của user dag login trong ht
+          $roles = auth()->user()->roles;
+        foreach ($roles as $role)
+        {
+            $permissions = $role->permissions;
+            if ( $permissions->contains('key_code', $PermissionCheck)){
+                return true;
+            }
+        }
+        return false;
+        //b2:so sanh gia trị đưa vào của route hiện tại xem có tồn tại các quyền mà mình lấy đc hay  k
+
+    }
 }
