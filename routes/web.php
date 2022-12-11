@@ -33,15 +33,17 @@ Route::prefix('admin')->group(function () {
         ]);
         Route::get('/create', [
             'as' => 'categories.create',
-            'uses' => 'CategoryController@create'
+            'uses' => 'CategoryController@create',
+            'middleware' => 'can:category-add'
         ]);
         Route::post('/store', [
             'as' => 'categories.store',
-            'uses' => 'CategoryController@store'
+            'uses' => 'CategoryController@store',
         ]);
         Route::get('/edit/{id}', [
             'as' => 'categories.edit',
-            'uses' => 'CategoryController@edit'
+            'uses' => 'CategoryController@edit',
+            'middleware' => 'can:category-edit'
         ]);
         Route::post('/update/{id}', [
             'as' => 'categories.update',
@@ -49,7 +51,8 @@ Route::prefix('admin')->group(function () {
         ]);
         Route::get('/delete/{id}', [
             'as' => 'categories.delete',
-            'uses' => 'CategoryController@delete'
+            'uses' => 'CategoryController@delete',
+            'middleware' => 'can:category-delete'
         ]);
     });
     Route::prefix('menus')->group(function () {
@@ -210,6 +213,17 @@ Route::prefix('admin')->group(function () {
             'as' => 'roles.delete',
             'uses' => 'AdminRolesController@delete'
         ]);
+    });
+    Route::prefix('permissions')->group(function () {
+        Route::get('/create', [
+            'as' => 'permissions.create',
+            'uses' => 'AdminPermissionController@createPermission'
+        ]);
+        Route::post('/store', [
+            'as' => 'permissions.store',
+            'uses' => 'AdminPermissionController@store'
+        ]);
+
     });
     Route::get('ckeditor', 'AdminProductController@ckeditor');
 

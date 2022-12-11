@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class AdminRolesController extends Controller
 {
     use deleteModelTrait;
+
     private $role;
     private $permission;
 
@@ -60,9 +61,11 @@ class AdminRolesController extends Controller
         $role->permissions()->sync($request->permission_id);
         return redirect()->route('roles.index');
     }
+
     public function delete($id)
     {
         return $this->deleteModelTrait($id, $this->role);
     }
+
 
 }
