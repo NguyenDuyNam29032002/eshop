@@ -26,33 +26,15 @@ Route::get('/home', function () {
 
 Route::prefix('admin')->group(function () {
     Route::prefix('categories')->group(function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
+        Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
+        Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
+        Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
+        Route::post('/update/{id}', [CategoryController::class, 'update'])->name('categories.update');
+        Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
+    });
+    Route::prefix('menus')->group(function () {
         Route::get('/', [
-            'as' => 'categories.index',
-            'uses' => 'CategoryController@index',
-            'middleware' => 'can:category-list'
-        ]);
-        Route::get('/create', [
-            'as' => 'categories.create',
-            'uses' => 'CategoryController@create',
-            'middleware' => 'can:category-add'
-        ]);
-        Route::post('/store', [
-            'as' => 'categories.store',
-            'uses' => 'CategoryController@store',
-        ]);
-        Route::get('/edit/{id}', [
-            'as' => 'categories.edit',
-            'uses' => 'CategoryController@edit',
-            'middleware' => 'can:category-edit'
-        ]);
-        Route::post('/update/{id}', [
-            'as' => 'categories.update',
-            'uses' => 'CategoryController@update'
-        ]);
-        Route::get('/delete/{id}', [
-            'as' => 'categories.delete',
-            'uses' => 'CategoryController@delete',
-            'middleware' => 'can:category-delete'
         ]);
     });
     Route::prefix('menus')->group(function () {
@@ -63,7 +45,8 @@ Route::prefix('admin')->group(function () {
         ]);
         Route::get('/create', [
             'as' => 'menus.create',
-            'uses' => 'MenuController@create'
+            'uses' => 'MenuController@create',
+            'middleware' => 'can:menu-add'
         ]);
         Route::post('/store', [
             'as' => 'menus.store',
@@ -71,7 +54,8 @@ Route::prefix('admin')->group(function () {
         ]);
         Route::get('/edit/{id}', [
             'as' => 'menus.edit',
-            'uses' => 'MenuController@edit'
+            'uses' => 'MenuController@edit',
+            'middleware' => 'can:menu-edit'
         ]);
         Route::post('/update/{id}', [
             'as' => 'menus.update',
@@ -79,14 +63,16 @@ Route::prefix('admin')->group(function () {
         ]);
         Route::get('/delete/{id}', [
             'as' => 'menus.delete',
-            'uses' => 'MenuController@delete'
+            'uses' => 'MenuController@delete',
+            'middleware' => 'can:menu-delete'
         ]);
     });
 
     Route::prefix('product')->group(function () {
         Route::get('/', [
             'as' => 'product.index',
-            'uses' => 'AdminProductController@index'
+            'uses' => 'AdminProductController@index',
+            'middleware' => 'can:category-list'
         ]);
         Route::get('/create', [
             'as' => 'product.create',
@@ -98,7 +84,8 @@ Route::prefix('admin')->group(function () {
         ]);
         Route::get('/edit/{id}', [
             'as' => 'product.edit',
-            'uses' => 'AdminProductController@edit'
+            'uses' => 'AdminProductController@edit',
+            'middleware' => 'can:product-edit, id'
         ]);
         Route::post('update/{id}', [
             'as' => 'product.update',

@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Traits\deleteModelTrait;
 use Illuminate\Http\Request;
 use App\Components\Recursive;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 
@@ -51,6 +52,9 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
+        $user = Auth::user();
+//        dd($user);
+
         $category = $this->category->find($id);
         $htmlOptions = $this->getCategory($category->parent_id);
         return view('admin.category.edit', compact('category', 'htmlOptions'));
@@ -72,5 +76,6 @@ class CategoryController extends Controller
 //        return redirect()->route('categories.index');
         return $this->deleteModelTrait($id, $this->category);
     }
+
 }
 

@@ -41,7 +41,7 @@
                                     <th scope="row">{{$banner->id}}</th>
                                     <td>{{$banner->name}}</td>
                                     <td>{{$banner->descriptions}}</td>
-                                    <td><img class="img-banner" width="150px" height="100px" src="{{$banner->image_path}}" alt=""></td>
+                                    <td><img class="img-banner" width="150px" height="100px" src="{{ asset($banner->image_path)}}" alt=""></td>
                                     <td>
                                         <a href="{{route('banner.edit', ['id' => $banner->id])}}"
                                            class="btn btn-success">Edit</a>

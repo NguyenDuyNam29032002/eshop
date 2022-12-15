@@ -13,6 +13,7 @@ class AdminController extends Controller
 
     public function postLoginAdmin(Request $request)
     {
+//        dd(bcrypt('1'));
         $remember = $request->has('remember_key') ? true : false;
         if (auth()->attempt([
             'email' => $request->email,
