@@ -1,9 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminSettingController;
+use App\Http\Controllers\AdminPermissionController;
 use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\AdminCategoryController;
+use App\Http\Controllers\AdminMenuController;
+use App\Http\Controllers\BannerAdminController;
+use App\Http\Controllers\AdminUsersController;
+use App\Http\Controllers\AdminRolesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,190 +33,66 @@ Route::get('/home', function () {
 
 Route::prefix('admin')->group(function () {
     Route::prefix('categories')->group(function () {
-        Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
-        Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
-        Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
-        Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
-        Route::post('/update/{id}', [CategoryController::class, 'update'])->name('categories.update');
-        Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
+        Route::get('/', [AdminCategoryController::class, 'index'])->name('categories.index');
+        Route::get('/create', [AdminCategoryController::class, 'create'])->name('categories.create');
+        Route::post('/store', [AdminCategoryController::class, 'store'])->name('categories.store');
+        Route::get('/edit/{id}', [AdminCategoryController::class, 'edit'])->name('categories.edit');
+        Route::post('/update/{id}', [AdminCategoryController::class, 'update'])->name('categories.update');
+        Route::get('/delete/{id}', [AdminCategoryController::class, 'delete'])->name('categories.delete');
     });
     Route::prefix('menus')->group(function () {
-        Route::get('/', [
-        ]);
-    });
-    Route::prefix('menus')->group(function () {
-        Route::get('/', [
-            'as' => 'menus.index',
-            'uses' => 'MenuController@index',
-            'middleware' => 'can:menu-list'
-        ]);
-        Route::get('/create', [
-            'as' => 'menus.create',
-            'uses' => 'MenuController@create',
-            'middleware' => 'can:menu-add'
-        ]);
-        Route::post('/store', [
-            'as' => 'menus.store',
-            'uses' => 'MenuController@store'
-        ]);
-        Route::get('/edit/{id}', [
-            'as' => 'menus.edit',
-            'uses' => 'MenuController@edit',
-            'middleware' => 'can:menu-edit'
-        ]);
-        Route::post('/update/{id}', [
-            'as' => 'menus.update',
-            'uses' => 'MenuController@update'
-        ]);
-        Route::get('/delete/{id}', [
-            'as' => 'menus.delete',
-            'uses' => 'MenuController@delete',
-            'middleware' => 'can:menu-delete'
-        ]);
+        Route::get('/', [MenuController::class, 'index'])->name('menus.index');
+        Route::get('/create', [MenuController::class, 'create'])->name('menus.create');;
+        Route::post('/store', [MenuController::class, 'store'])->name('menus.store');;
+        Route::get('/edit/{id}', [MenuController::class, 'edit'])->name('menus.edit');;;
+        Route::post('/update/{id}', [MenuController::class, 'update'])->name('menus.update');
+        Route::get('/delete/{id}', [MenuController::class, 'delete'])->name('menus.delete');
     });
 
     Route::prefix('product')->group(function () {
-        Route::get('/', [
-            'as' => 'product.index',
-            'uses' => 'AdminProductController@index',
-            'middleware' => 'can:category-list'
-        ]);
-        Route::get('/create', [
-            'as' => 'product.create',
-            'uses' => 'AdminProductController@create'
-        ]);
-        Route::post('/store', [
-            'as' => 'product.store',
-            'uses' => 'AdminProductController@store'
-        ]);
-        Route::get('/edit/{id}', [
-            'as' => 'product.edit',
-            'uses' => 'AdminProductController@edit',
-            'middleware' => 'can:product-edit, id'
-        ]);
-        Route::post('update/{id}', [
-            'as' => 'product.update',
-            'uses' => 'AdminProductController@update'
-        ]);
-        Route::get('/delete/{id}', [
-            'as' => 'product.delete',
-            'uses' => 'AdminProductController@delete'
-        ]);
+        Route::get('/', [AdminProductController::class, 'index'])->name('product.index');
+        Route::get('/create', [AdminProductController::class, 'create'])->name('product.create');
+        Route::post('/store', [AdminProductController::class, 'store'])->name('product.store');
+        Route::get('/edit/{id}', [AdminProductController::class, 'edit'])->name('product.edit');
+        Route::post('update/{id}', [AdminProductController::class, 'update'])->name('product.update');
+        Route::get('/delete/{id}', [AdminProductController::class, 'delete'])->name('product.delete');
     });
     Route::prefix('slider')->group(function () {
-        Route::get('/', [
-            'as' => 'banner.index',
-            'uses' => 'BannerAdminController@index'
-        ]);
-        Route::get('/create', [
-            'as' => 'banner.create',
-            'uses' => 'BannerAdminController@create'
-        ]);
-        Route::post('/store', [
-            'as' => 'banner.store',
-            'uses' => 'BannerAdminController@store'
-        ]);
-        Route::get('/edit/{id}', [
-            'as' => 'banner.edit',
-            'uses' => 'BannerAdminController@edit'
-        ]);
-        Route::post('/update/{id}', [
-            'as' => 'banner.update',
-            'uses' => 'BannerAdminController@update'
-        ]);
-        Route::get('/delete/{id}', [
-            'as' => 'banner.delete',
-            'uses' => 'BannerAdminController@delete'
-        ]);
+        Route::get('/', [BannerAdminController::class, 'index'])->name('banner.index');
+        Route::get('/create', [BannerAdminController::class, 'create'])->name('banner.create');
+        Route::post('/store', [BannerAdminController::class, 'store'])->name('banner.store');
+        Route::get('/edit/{id}', [BannerAdminController::class, 'edit'])->name('banner.edit');
+        Route::post('/update/{id}', [BannerAdminController::class, 'update'])->name('banner.update');
+        Route::get('/delete/{id}', [BannerAdminController::class, 'delete'])->name('banner.delete');
     });
     Route::prefix('settings')->group(function () {
-        Route::get('/', [
-            'as' => 'settings.index',
-            'uses' => 'AdminSettingController@index'
-        ]);
-        Route::get('/create', [
-            'as' => 'settings.create',
-            'uses' => 'AdminSettingController@create'
-        ]);
-        Route::post('/store', [
-            'as' => 'settings.store',
-            'uses' => 'AdminSettingController@store'
-        ]);
-        Route::get('/edit/{id}', [
-            'as' => 'settings.edit',
-            'uses' => 'AdminSettingController@edit'
-        ]);
-        Route::post('/update/{id}', [
-            'as' => 'settings.update',
-            'uses' => 'AdminSettingController@update'
-        ]);
-        Route::get('/delete/{id}', [
-            'as' => 'settings.delete',
-            'uses' => 'AdminSettingController@delete'
-        ]);
+        Route::get('/', [AdminSettingController::class, 'index'])->name('settings.index');
+        Route::get('/create', [AdminSettingController::class, 'create'])->name('settings.create');
+        Route::post('/store', [AdminSettingController::class, 'store'])->name('settings.store');
+        Route::get('/edit/{id}', [AdminSettingController::class, 'edit'])->name('settings.edit');
+        Route::post('/update/{id}', [AdminSettingController::class, 'update'])->name('settings.update');
+        Route::get('/delete/{id}', [AdminSettingController::class, 'delete'])->name('settings.delete');
 
     });
     Route::prefix('users')->group(function () {
-        Route::get('/', [
-            'as' => 'users.index',
-            'uses' => 'AdminUsersController@index'
-        ]);
-        Route::get('/create', [
-            'as' => 'users.create',
-            'uses' => 'AdminUsersController@create'
-        ]);
-        Route::post('/store', [
-            'as' => 'users.store',
-            'uses' => 'AdminUsersController@store'
-        ]);
-        Route::get('/edit/{id}', [
-            'as' => 'users.edit',
-            'uses' => 'AdminUsersController@edit'
-        ]);
-        Route::post('/update/{id}', [
-            'as' => 'users.update',
-            'uses' => 'AdminUsersController@update'
-        ]);
-        Route::get('/delete/{id}', [
-            'as' => 'users.delete',
-            'uses' => 'AdminUsersController@delete'
-        ]);
+        Route::get('/', [AdminUsersController   ::class, 'index'])->name('users.index');
+        Route::get('/create', [AdminUsersController::class, 'create'])->name('users.create');
+        Route::post('/store', [AdminUsersController::class, 'store'])->name('users.store');
+        Route::get('/edit/{id}', [AdminUsersController::class, 'edit'])->name('users.edit');
+        Route::post('/update/{id}', [AdminUsersController::class, 'update'])->name('users.update');
+        Route::get('/delete/{id}', [AdminUsersController::class, 'delete'])->name('users.delete');
     });
     Route::prefix('roles')->group(function () {
-        Route::get('/', [
-            'as' => 'roles.index',
-            'uses' => 'AdminRolesController@index'
-        ]);
-        Route::get('/create', [
-            'as' => 'roles.create',
-            'uses' => 'AdminRolesController@create'
-        ]);
-        Route::post('/store', [
-            'as' => 'roles.store',
-            'uses' => 'AdminRolesController@store'
-        ]);
-        Route::get('/edit/{id}', [
-            'as' => 'roles.edit',
-            'uses' => 'AdminRolesController@edit'
-        ]);
-        Route::post('/update/{id}', [
-            'as' => 'roles.update',
-            'uses' => 'AdminRolesController@update'
-        ]);
-        Route::get('/delete/{id}', [
-            'as' => 'roles.delete',
-            'uses' => 'AdminRolesController@delete'
-        ]);
+        Route::get('/', [AdminRolesController::class, 'index'])->name('roles.index');
+        Route::get('/create', [AdminRolesController::class, 'create'])->name('roles.create');
+        Route::post('/store', [AdminRolesController::class, 'store'])->name('roles.store');
+        Route::get('/edit/{id}', [AdminRolesController::class, 'edit'])->name('roles.edit');
+        Route::post('/update/{id}', [AdminRolesController::class, 'update'])->name('roles.update');
+        Route::get('/delete/{id}', [AdminRolesController::class, 'delete'])->name('roles.delete');
     });
     Route::prefix('permissions')->group(function () {
-        Route::get('/create', [
-            'as' => 'permissions.create',
-            'uses' => 'AdminPermissionController@createPermission'
-        ]);
-        Route::post('/store', [
-            'as' => 'permissions.store',
-            'uses' => 'AdminPermissionController@store'
-        ]);
+        Route::get('/create', [AdminPermissionController::class, 'createPermission'])->name('permissions.create');
+        Route::post('/store', [AdminPermissionController::class, 'store'])->name('permissions.store');
 
     });
     Route::get('ckeditor', 'AdminProductController@ckeditor');
