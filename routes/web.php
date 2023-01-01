@@ -6,11 +6,12 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminSettingController;
 use App\Http\Controllers\AdminPermissionController;
 use App\Http\Controllers\AdminProductController;
-use App\Http\Controllers\AdminCategoryController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AdminMenuController;
 use App\Http\Controllers\BannerAdminController;
 use App\Http\Controllers\AdminUsersController;
 use App\Http\Controllers\AdminRolesController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +24,9 @@ use App\Http\Controllers\AdminRolesController;
 |
 */
 
-Route::get('/', 'AdminController@loginAdmin');
-Route::post('/', 'AdminController@postLoginAdmin');
-Route::get('logout', 'AdminController@logout');
+Route::get('/', [AdminController::class, 'loginAdmin']);
+Route::post('/', [AdminController::class, 'postLoginAdmin']);
+
 
 Route::get('/home', function () {
     return view('home');
@@ -33,12 +34,12 @@ Route::get('/home', function () {
 
 Route::prefix('admin')->group(function () {
     Route::prefix('categories')->group(function () {
-        Route::get('/', [AdminCategoryController::class, 'index'])->name('categories.index');
-        Route::get('/create', [AdminCategoryController::class, 'create'])->name('categories.create');
-        Route::post('/store', [AdminCategoryController::class, 'store'])->name('categories.store');
-        Route::get('/edit/{id}', [AdminCategoryController::class, 'edit'])->name('categories.edit');
-        Route::post('/update/{id}', [AdminCategoryController::class, 'update'])->name('categories.update');
-        Route::get('/delete/{id}', [AdminCategoryController::class, 'delete'])->name('categories.delete');
+        Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
+        Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
+        Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
+        Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
+        Route::post('/update/{id}', [CategoryController::class, 'update'])->name('categories.update');
+        Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
     });
     Route::prefix('menus')->group(function () {
         Route::get('/', [MenuController::class, 'index'])->name('menus.index');
